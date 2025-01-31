@@ -64,7 +64,7 @@ async def play(ctx, *, search):
             url = info["entries"][0]["url"]
 
         # Play the audio
-        ffmpeg_path = r"C:\\Users\\rossu\\ffmpeg\\ffmpeg-7.1-essentials_build\\bin\\ffmpeg.exe"  # Replace with your actual FFmpeg path
+        ffmpeg_path = r"C:\\yourpath"  # Replace with your actual FFmpeg path
         if not vc.is_playing():
             vc.play(discord.FFmpegPCMAudio(url, executable=ffmpeg_path), after=lambda e: check_queue(ctx))
             await ctx.send(f"Now playing: {info['entries'][0]['title']}")
@@ -104,7 +104,7 @@ async def stop(ctx):
 def check_queue(ctx):
     if ctx.guild.id in queues and len(queues[ctx.guild.id]) > 0:
         next_song = queues[ctx.guild.id].pop(0)
-        ffmpeg_path = r"C:\\Users\\rossu\\ffmpeg\\ffmpeg-7.1-essentials_build\\bin\\ffmpeg.exe"
+        ffmpeg_path = r"C:\\yourpath"
         ctx.voice_client.play(discord.FFmpegPCMAudio(next_song, executable=ffmpeg_path), after=lambda e: check_queue(ctx))
 
 # Debug voice connection status
